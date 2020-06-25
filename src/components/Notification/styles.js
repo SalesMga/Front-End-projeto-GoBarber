@@ -83,7 +83,7 @@ button {
 
 ${props =>
         props.unread &&
-        css`
+css`
 &::after {
 content: '';
 display: inline-block;

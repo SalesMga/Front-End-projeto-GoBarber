@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale/pt';
@@ -9,6 +9,11 @@ import { Container, Badge, NotificationList, Notification, Scroll } from './styl
 export default function Notifications() {
     const [visible, setVisible] = useState(false);
     const [notification, setNotification] = useState([]);
+
+    const hasUnread = useMemo(
+        () => Boolean(notification.find(notification => notification.read === false))
+        [notification] //toda vez que a var notification do useState for altera ou chamada via API sera recalculado esta variave hasUnread
+    );
 
     useEffect(() => {
         async function loadNotifications() {
@@ -33,9 +38,19 @@ export default function Notifications() {
         setVisible(!visible);
     }
 
+    async function handleMarkAsRead(id) {
+        await api.put(`notifications/${id}`);
+
+        setNotification(
+            notification.map(notification =>
+                notification._id === id ? { ...notification, read: true } : notification
+            )
+        );
+    }
+
     return (
         <Container>
-            <Badge onClick={handleToggleVisible} hasUnread>
+            <Badge onClick={handleToggleVisible} hasUnread={hasUnread}>
                 <MdNotifications MdNotifications color="#7159c1" size={20} />
             </Badge>
 
@@ -45,7 +60,9 @@ export default function Notifications() {
                         <Notification key={notification._id} unread={!notification.read}>
                             <p>{notification.content}</p>
                             <time>{notification.timeDistance}</time>
-                            <button type="button">Marcar como lida</button>
+                            {!notification.read && (
+                                <button type="button" onClick={() => handleMarkAsRead(notification._id)}>Marcar como lida</button>
+                            )}
                         </Notification>
                     ))}
 
