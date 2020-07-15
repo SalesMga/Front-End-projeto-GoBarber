@@ -11,8 +11,10 @@ background: none;
 border: 0;
 position: relative;
 
-${props => props.hasUnread && css`
-&::after {
+${props =>
+props.hasUnread &&
+css`
+  &::after {
 position: absolute;
 right: 0;
 top: 0;
@@ -21,7 +23,8 @@ height: 8px;
 background: #ff892e;
 content: '';
 border-radius: 50%;
-}`}
+  }
+ `}
 `;
 
 export const NotificationList = styled.div`
@@ -38,7 +41,7 @@ display: ${props => (props.visible ? 'block' : 'none')};
     content: '';
     position: absolute;
     left: calc(50% - 20px);
-    top: -20 px;
+    top: -20px;
     width:0;
     height: 0;
     border-left: 20px solid transparent;

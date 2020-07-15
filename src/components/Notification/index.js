@@ -42,7 +42,9 @@ export default function Notifications() {
         await api.put(`notifications/${id}`);
 
         setNotification(
-            notification.map(notification =>
+            notification.map
+            (
+                notification =>
                 notification._id === id ? { ...notification, read: true } : notification
             )
         );
@@ -61,7 +63,9 @@ export default function Notifications() {
                             <p>{notification.content}</p>
                             <time>{notification.timeDistance}</time>
                             {!notification.read && (
-                                <button type="button" onClick={() => handleMarkAsRead(notification._id)}>Marcar como lida</button>
+                                <button type="button" onClick={() => handleMarkAsRead(notification._id)}>
+                                    Marcar como lida
+                                </button>
                             )}
                         </Notification>
                     ))}
