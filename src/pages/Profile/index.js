@@ -1,32 +1,35 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useDispatch ,useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+
+import { updateProfileRequest } from '../../store/modules/user/action';
 
 import { Container } from './styles';
 
 export default function Profile() {
+    const dispatch = useDispatch();
     const profile = useSelector(state => state.user.profile);
 
-    function handleSubmit (data) {
-
+    function handleSubmit(data) {
+        dispatch(updateProfileRequest(data));
     }
-    return(
+    return (
 
-    <Container>
-        <Form initialData={profile} onSubmit={handleSubmit} >
-            <Input name="name" placeholder="Nome completo" />
+        <Container>
+            <Form initialData={profile} onSubmit={handleSubmit} >
+                <Input name="name" placeholder="Nome completo" />
                 <Input name="email" type="email" placeholder="Se e-mail" />
 
-                    <hr />
+                <hr />
 
-                    <Input type="password" name="oldPassword" placeholder="Sua senha atual" />
-                        <Input type="password" name="Password" placeholder="Nova senha" />
-                            <Input type="password" name="ConfirmPassword" placeholder="Confirma senha" />
-                                <button type="submit">Atualizar perfil</button>
-      </Form>
+                <Input type="password" name="oldPassword" placeholder="Sua senha atual" />
+                <Input type="password" name="Password" placeholder="Nova senha" />
+                <Input type="password" name="ConfirmPassword" placeholder="Confirma senha" />
+                <button type="submit">Atualizar perfil</button>
+            </Form>
 
-                            <button type="submit">Sair do GoBarber</button>
+            <button type="submit">Sair do GoBarber</button>
 
-  </Container>
-);
+        </Container>
+    );
 }
