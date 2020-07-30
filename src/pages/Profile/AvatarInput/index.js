@@ -12,7 +12,7 @@ export default function AvatarInput() {
     const ref = useRef();
 
     useEffect(() => {
-        if(ref.current){
+        if (ref.current) {
             registerField({
                 name: 'avatar_id',
                 ref: ref.current,
@@ -28,7 +28,7 @@ export default function AvatarInput() {
 
         const response = await api.post('files', data);
 
-        const {id, url} = response.data;
+        const { id, url } = response.data;
 
         setFile(id);
         setPreview(url);
@@ -36,8 +36,10 @@ export default function AvatarInput() {
 
     return (
         <Container>
-            <label>
-                <img src={preview || 'https://api.adorable.io/avatars/50/abott@adorable.png'} alt="" />
+            <label htmlFor="avatar">
+                <img
+                    src={preview || 'https://api.adorable.io/avatars/155/abott@adorable.png' }
+                    alt="" />
 
                 <input
                     type="file"
