@@ -10,7 +10,7 @@ import Reactotron from  '../Config/ReactotronConfig';
 
 const sagaMonitor = process.env.NODE_ENV === 'development'
 ? console.tron.createSagaMonitor()
-: null;
+: null ;
 
 const sagaMiddleware = createSagaMiddleware({sagaMonitor});
 

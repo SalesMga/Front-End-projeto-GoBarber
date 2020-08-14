@@ -13,6 +13,6 @@ export function updateProfileSuccess(profile) {
 }
 export function updateProfileFailure() {
     return {
-        type: '@user/UPDATE_PROFILE_REQUEST'
+        type: '@user/UPDATE_PROFILE_REQUEST',
     };
 }
