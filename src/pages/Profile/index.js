@@ -13,7 +13,7 @@ export default function Profile() {
     const dispatch = useDispatch();
     const profile = useSelector(state => state.user.profile);
 
-    function handleSubmit(e, data) {
+    function handleSubmit(data) {
         console.tron.log(data);
         dispatch(updateProfileRequest(data));
     }
@@ -29,13 +29,13 @@ export default function Profile() {
                 <AvatarInput name="avatar_id" />
 
                 <Input name="name" placeholder="Nome completo" />
-                <Input name="email" type="email" placeholder="Se e-mail" />
+                <Input name="email" type="email" placeholder="Seu e-mail" />
 
                 <hr />
 
                 <Input type="password" name="oldPassword" placeholder="Sua senha atual" />
-                <Input type="password" name="Password" placeholder="Nova senha" />
-                <Input type="password" name="ConfirmPassword" placeholder="Confirma senha" />
+                <Input type="password" name="password" placeholder="Nova senha" />
+                <Input type="password" name="confirmPassword" placeholder="Confirma senha" />
                 <button type="submit">Atualizar perfil</button>
             </Form>
 
